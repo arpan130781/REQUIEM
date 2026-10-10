@@ -26,18 +26,33 @@ The REQUIEM hardware consists of an audio acquisition stage, embedded processing
 
 The overall design uses an embedded PCB architecture with separated analogue, digital and power sections.
 
-## 4. AI Model and Training
+## 4. AI Model and Training Dataset
 The AI component of REQUIEM uses a compact Conv-TasNet-based speech-enhancement architecture selected for its suitability for time-domain speech processing and potential for resource-constrained deployment. The model is being prepared for INT8 quantised edge inference to reduce computational and memory requirements. 
 
-The training approach combines clean speech with defence-related noise under different signal-to-noise ratio conditions. The considered noise environment includes gunfire, footsteps, artillery, vehicle and engine noise, helicopter and aircraft noise, radio chatter and other high-energy disturbances. The data pipeline incorporates noise mixing at different SNRs and augmentation techniques such as reverberation, amplitude variation and clipping simulation to improve robustness to changing acoustic conditions. Model performance is evaluated using PESQ, STOI and SI-SNR.
+**MAD Dataset (Military Audio Dataset)**
+To train the model on highly realistic defence scenarios, we utilize the **MAD dataset**. This is a comprehensive library of real-world military noises containing:
+- 8,000+ sound samples
+- ~12 hours of audio
+- 7 categories of defence noise: Gunfire, artillery/shelling, vehicles, helicopters, jets, footsteps, and radio chatter.
+
+The training pipeline incorporates mixing clean human speech with these MAD samples at different SNRs, and applying augmentation techniques (reverberation, clipping simulation) to improve robustness. 
 
 ## 5. Results and Validation
-Initial offline evaluation has been performed using held-out noisy speech samples:
-- **PESQ:** Improved from 1.28 to 1.93 (+51%)
-- **STOI:** Improved from 0.86 to 0.92 (+6.5%, exceeding the target of 0.85)
-- **SI-SNR:** Improved from 5.0 dB to 12.7 dB (+7.7 dB)
+Initial offline evaluation has been performed using held-out noisy speech samples. The model successfully separates speech from background defence noise without prior exposure to the specific test clips.
 
-Spectrogram analysis indicates a reduction of background noise while retaining the structural characteristics of speech. The current PESQ and SI-SNR results are ongoing optimisation targets (aiming for PESQ > 2.5 and SNR improvement > 15 dB).
+![Model Improvement](assets/model_improvement.jpg)
+
+**Performance Metrics:**
+- **PESQ (Clarity):** Improved from 1.28 to 1.93 (+51%)
+- **STOI (Intelligibility):** Improved from 0.86 to 0.92 (+6.5%, exceeding the target of 0.85)
+- **SI-SNR (Signal Strength):** Improved from 5.0 dB to 12.7 dB (+7.7 dB)
+
+**Spectrogram Analysis:**
+As seen in the visual comparison below, the quieter spaces between words appear significantly cleaner and darker, showing massive reduction in background noise while the speech structure itself remains preserved and intact.
+
+![Spectrogram Comparison](assets/spectrogram_comparison.jpg)
+
+The current PESQ and SI-SNR results are ongoing optimisation targets (aiming for PESQ > 2.5 and SNR improvement > 15 dB).
 
 ## 6. Embedded Performance Targets
 - **Latency:** < 20 ms
