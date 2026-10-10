@@ -1,0 +1,49 @@
+# Defence AI-ANC System — Bill of Materials (BOM)
+# PCB Rev: v1.0 | Date: 2026-09-25 | Project: Defence Grade AI Active Noise Cancellation
+
+Ref,Qty,Value,Description,Package,Manufacturer,MPN,Unit_Cost_USD,Total_Cost_USD,Notes
+U1,1,STM32H755ZIT6,Dual-core ARM Cortex-M7+M4 MCU 480MHz/240MHz 2MB Flash 1MB SRAM -40..85C,LQFP-144,STMicroelectronics,STM32H755ZIT6,18.50,18.50,Main DSP + Control MCU
+U2,1,Kendryte K210,RISC-V Dual-core 400MHz KPU NPU 0.25TOPS 8MB SRAM AI SoC,BGA-128,Kendryte/Sipeed,K210-BGA128,8.00,8.00,AI Inference Co-Processor
+U3,1,CS4270-CZZ,24-bit 192kHz Stereo Audio ADC/DAC Codec I2S -40..85C,SSOP-28,Cirrus Logic,CS4270-CZZ,8.50,8.50,Master Audio Codec
+U4,1,INA217AIDIP,Low-noise instrumentation amp 3nV/rtHz Gain 1-2000,DIP-8,Texas Instruments,INA217AIDIP,6.80,6.80,Mic Preamplifier
+U5,1,ADS1274IPAPR,24-bit 4-ch simultaneous ADC 144kSPS SPI -40..85C,TQFP-64,Texas Instruments,ADS1274IPAPR,28.00,28.00,Multi-mic precision ADC
+U6,1,TPS65217CRSLR,PMIC DC-DC converters LDOs Li-Ion charger,QFN-48,Texas Instruments,TPS65217CRSLR,4.20,4.20,Main PMIC
+U7,1,TLV1117-33CDCYR,3.3V 800mA LDO Regulator,SOT-223,Texas Instruments,TLV1117-33CDCYR,0.85,0.85,3.3V Digital Rail
+U8,1,TLV1117-18CDCYR,1.8V 800mA LDO Regulator,SOT-223,Texas Instruments,TLV1117-18CDCYR,0.85,0.85,1.8V K210 I/O Rail
+U9,1,TPA3255QDAPRQ1,Class-D 315W stereo amp BTL -40..105C,QFN-56,Texas Instruments,TPA3255QDAPRQ1,12.50,12.50,Anti-noise Speaker Driver
+U10,1,PCM1794APBR,24-bit 192kHz Stereo DAC THD -120dB I2S,SSOP-28,Texas Instruments,PCM1794APBR,9.80,9.80,High-fidelity DAC Output
+U11,1,SP3485EN-L/TR,RS-485/RS-422 half-duplex transceiver 5Mbps -40..85C,SOIC-8,MaxLinear,SP3485EN-L/TR,1.20,1.20,Tactical RS-485 Comms
+U12,1,TCAN1044VDRQ1,CAN FD transceiver 8Mbps AEC-Q100 Grade 1 -40..125C,SOIC-8,Texas Instruments,TCAN1044VDRQ1,2.30,2.30,CAN FD Vehicle Bus
+U13,1,W25Q128JVSIQ,128Mb SPI NOR Flash XIP -40..85C AI model weights,SOIC-8,Winbond,W25Q128JVSIQ,1.80,1.80,Model Weight Storage
+U14,1,IS42S32200L-6TLI,64Mb x32 SDRAM 166MHz -40..85C,TSOP-54,ISSI,IS42S32200L-6TLI,4.50,4.50,Inference Buffer SDRAM
+U15,1,ICM-42688-P,6-axis IMU ±2000dps/±16g SPI/I2C 32kHz ODR -40..85C,LGA-14,TDK InvenSense,ICM-42688-P,3.20,3.20,Vibration Reference Sensor
+U16,1,BMP388,Barometric pressure + temp SPI/I2C -40..85C,LGA-10,Bosch Sensortec,BMP388,1.90,1.90,Wind/pressure Reference
+U17,1,FUSB302BMPX,USB-C PD controller programmable CC logic,WSON-16,onsemi,FUSB302BMPX,1.50,1.50,USB-C Power Delivery
+U18,1,MAX7401ESA+,8th-order elliptic SCF LPF 1Hz-5kHz anti-alias,SOIC-8,Analog Devices/Maxim,MAX7401ESA+,4.60,4.60,Anti-Aliasing Filter
+MK1,1,ICS-40300,MEMS mic 141dB SPL max -74dBV/Pa SNR 65dB PDM -40..85C,LGA-5 (3.35x2.5mm),TDK InvenSense,ICS-40300,1.20,1.20,Primary Input Microphone
+MK2,1,ICS-40300,MEMS mic 141dB SPL max -74dBV/Pa SNR 65dB PDM -40..85C,LGA-5 (3.35x2.5mm),TDK InvenSense,ICS-40300,1.20,1.20,Reference/Error Microphone
+Y1,1,ABM8-25.000MHZ-B2-T,25MHz 18pF ±10ppm Crystal -40..85C,3225-4pin SMD,Abracon,ABM8-25.000MHZ-B2-T,0.55,0.55,MCU HSE Clock
+FB1,1,BLM18PG221SN1D,220R @ 100MHz Ferrite Bead 3A max,0603,Murata,BLM18PG221SN1D,0.15,0.15,Audio Power Isolation
+J1,1,FTSH-105-01-L-DV-K,2x5 1.27mm SWD/JTAG debug header shrouded,2x5 1.27mm,Samtec,FTSH-105-01-L-DV-K,2.40,2.40,ARM Debug Interface
+J2,1,SJ1-3535NG,3.5mm 3-pole jack horizontal MIC IN,PCB Mount,CUI Devices,SJ1-3535NG,0.65,0.65,Primary Mic Input Jack
+J3,1,SJ1-43513NG,3.5mm 4-pole TRRS jack horizontal AUDIO OUT,PCB Mount,CUI Devices,SJ1-43513NG,0.85,0.85,Headset/Speaker Output
+J4,1,5569-04A2,Molex Mini-Fit Jr 2x2 4.2mm power connector,4-pin PTH,Molex,0039301040,1.50,1.50,7-36V Military DC Input
+C1-C20,20,GRT155R61A104KE01D,100nF 10V X5R 0402 Decoupling,0402,Murata,GRT155R61A104KE01D,0.02,0.40,IC Decoupling Caps
+C21-C28,8,GRT188R61A106ME13D,10uF 10V X5R 0805 Bulk,0805,Murata,GRT188R61A106ME13D,0.12,0.96,Bulk Decoupling Caps
+C29-C32,4,GRM21BR61E226ME44L,22uF 25V X5R 0805 Power filter,0805,Murata,GRM21BR61E226ME44L,0.35,1.40,Power Rail Filter Caps
+C33-C34,2,GRM1885C1H100JA01D,10pF 50V C0G 0402 Crystal load,0402,Murata,GRM1885C1H100JA01D,0.03,0.06,Crystal Load Caps
+R1-R10,10,RC0402FR-0710KL,10kΩ 1% 1/16W 0402,0402,Yageo,RC0402FR-0710KL,0.01,0.10,Pull-up/down Resistors
+R11-R14,4,RC0402FR-07100RL,100Ω 1% 1/16W 0402,0402,Yageo,RC0402FR-07100RL,0.01,0.04,Series Termination
+R15-R16,2,RC0402FR-071KL,1kΩ 1% 1/16W 0402,0402,Yageo,RC0402FR-071KL,0.01,0.02,LED Current Limit
+D1,1,LTST-C190GKT,Green 0402 LED Vf=2.0V 20mA,0402,Lite-On,LTST-C190GKT,0.25,0.25,Power Good Indicator
+D2,1,LTST-C190TBKT,Blue 0402 LED Vf=3.2V 20mA,0402,Lite-On,LTST-C190TBKT,0.28,0.28,ANC Active Indicator
+D3,1,LTST-C190KRKT,Red 0402 LED Vf=1.9V 20mA,0402,Lite-On,LTST-C190KRKT,0.22,0.22,Fault Indicator
+D4,1,PRTR5V0U2X,Dual ESD protection USB 5V SCL/SDA,SOT-363,Nexperia,PRTR5V0U2X,0.35,0.35,USB ESD Protection
+D5-D6,2,SM712-02HTG,RS-485 line TVS protection 12V,SOT-23,Bourns,SM712-02HTG,0.45,0.90,RS-485 Bus Protection
+H1-H4,4,M3 Hex Standoff,M3 x 6mm brass hex standoff & nut panel mount,,Various,,0.20,0.80,PCB Mounting Hardware
+TP1-TP5,5,5019,2mm test point round pad SMD,,Keystone,5019,0.15,0.75,Debug Test Points
+PCB,1,4-Layer PCB,160x100mm FR4 Tg170 1oz ENIG 4-layer min 0.15mm trace,,JLCPCB/PCBWay,,45.00,45.00,PCB Fabrication (10 pcs unit price)
+
+TOTAL_BOM_COMPONENT_COST,,,,,,,,,176.02,Excluding PCB
+TOTAL_WITH_PCB,,,,,,,,,221.02,Per unit at prototype qty (10pcs)
+ESTIMATED_PRODUCTION_COST_1000pcs,,,,,,,,,85.00,Estimated at 1000 unit volume
